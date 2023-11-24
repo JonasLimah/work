@@ -1,9 +1,8 @@
 package com.apiwork.api.enteties;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,21 +11,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_client")
 public class Client implements Serializable {
-    private static Long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany(mappedBy = "client")
-    @JsonIgnore
-    private List<Order> orders = new ArrayList<>();
+    List<Contact> contacts = new ArrayList<>();
+    @OneToMany(mappedBy = "client")
+    List<Address> addresses = new ArrayList<>();
+    public Client(){}
 
-    public Client(){
-
-    }
-
-    public Client( String name) {
-
+    public Client(String name) {
         this.name = name;
     }
 
@@ -43,8 +40,13 @@ public class Client implements Serializable {
         this.name = name;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
     @Override

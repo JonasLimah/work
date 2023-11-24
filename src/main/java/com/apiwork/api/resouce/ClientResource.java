@@ -1,13 +1,12 @@
 package com.apiwork.api.resouce;
 
 import com.apiwork.api.enteties.Client;
+import com.apiwork.api.enteties.Contact;
 import com.apiwork.api.service.ClientService;
+import com.apiwork.api.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,15 +14,18 @@ import java.util.List;
 @RequestMapping(value = "/clients")
 public class ClientResource {
     @Autowired
-    private ClientService clientService;
+    private ClientService service;
+
     @GetMapping
-    public ResponseEntity<List<Client>> findClient(){
-        List<Client> list = clientService.findAll();
-        return ResponseEntity.ok().body(list);
+    public ResponseEntity<List<Client>> findClients(){
+        List<Client> clients = service.findAll();
+        return ResponseEntity.ok().body(clients);
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity<Client> findClient(@PathVariable Long id){
-        Client user = clientService.findClient(id);
-        return ResponseEntity.ok().body(user);
+        Client client = service.findClients(id);
+        return ResponseEntity.ok().body(client);
     }
+
+
 }
