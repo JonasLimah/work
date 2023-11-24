@@ -28,11 +28,10 @@ public class ContactResource {
         Contact contact = service.findContact(id);
         return ResponseEntity.ok().body(contact);
     }
-    @PostMapping(value = "/insert")
-    public ResponseEntity<Contact> insert(@RequestBody Contact obj ){
-        service.postContact(obj);
-        return ResponseEntity.ok().body(obj);
+    @PostMapping(
+            value = "/create", consumes = "application/json", produces = "application/json")
+    public Contact createContact(@RequestBody Contact contact) {
+        return service.postContact(contact);
     }
-
 
 }

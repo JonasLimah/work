@@ -26,6 +26,11 @@ public class ClientResource {
         Client client = service.findClients(id);
         return ResponseEntity.ok().body(client);
     }
+    @PostMapping(
+            value = "/create", consumes = "application/json", produces = "application/json")
+    public Client createClient(@RequestBody Client client) {
+        return service.postClient(client);
+    }
 
 
 }

@@ -2,6 +2,7 @@ package com.apiwork.api.resouce;
 
 import com.apiwork.api.enteties.Address;
 import com.apiwork.api.enteties.Client;
+import com.apiwork.api.enteties.Contact;
 import com.apiwork.api.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,11 @@ public class AddressResource {
     public ResponseEntity<Address> findAddress(@PathVariable Long id){
         Address address = service.findAddress(id);
         return ResponseEntity.ok().body(address);
+    }
+    @PostMapping(
+            value = "/create", consumes = "application/json", produces = "application/json")
+    public Address createAddress(@RequestBody Address address) {
+        return service.postAddress(address);
     }
 
 }
