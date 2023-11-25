@@ -17,9 +17,11 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "client")
+    @OneToMany
+    @JoinColumn(name = "id_client")
     List<Contact> contacts = new ArrayList<>();
-    @OneToMany(mappedBy = "client")
+    @OneToMany
+    @JoinColumn(name = "id_client")
     List<Address> addresses = new ArrayList<>();
     public Client(){}
 

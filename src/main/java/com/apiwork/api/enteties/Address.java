@@ -19,9 +19,7 @@ public class Address implements Serializable {
     private String street;
     private String number;
     private String reference;
-    @ManyToOne
-    @JoinColumn
-    private Client client;
+
     public Address(){}
 
     public Address(String zipCode, String street, String number, String reference) {

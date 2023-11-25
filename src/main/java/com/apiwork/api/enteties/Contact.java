@@ -17,9 +17,7 @@ public class Contact implements Serializable {
     private Long id;
     private String telephone;
     private String email;
-    @ManyToOne
-    @JoinColumn
-    private Client client;
+
     public Contact(){}
 
     public Contact(String telephone, String email) {
